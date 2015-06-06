@@ -21,8 +21,8 @@ angular.module('jkuri.datepicker', [])
 			scope.calendarOpened = false;
 			scope.days = [];
 			scope.dayNames = [];
-			scope.viewValue;
-			scope.dateValue;
+			scope.viewValue = null;
+			scope.dateValue = null;
 
 			moment.locale(scope.locale);
 			var date = moment();
@@ -33,17 +33,17 @@ angular.module('jkuri.datepicker', [])
 				var lastDayOfMonth = date.endOf('month').date(),
 					month = date.month(),
 					year = date.year(),
-					i = 1;
+					n = 1;
 			
 				var firstWeekDay = date.set('date', 1).day();
 				if (firstWeekDay !== 1) {
-					i -= firstWeekDay - 1;
+					n -= firstWeekDay - 1;
 				}
 
 				scope.dateValue = date.format('MMMM YYYY');
 				scope.days = [];
 
-				for (var i = i; i <= lastDayOfMonth; i += 1) {
+				for (var i = n; i <= lastDayOfMonth; i += 1) {
 					if (i > 0) {
 						scope.days.push({day: i, month: month + 1, year: year, enabled: true});
 					} else {
