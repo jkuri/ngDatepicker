@@ -6,7 +6,7 @@ angular.module('jkuri.datepicker', [])
 	var setScopeValues = function (scope, attrs) {
 		scope.format = attrs.format || 'YYYY-MM-DD';
 		scope.viewFormat = attrs.viewFormat || 'Do MMMM YYYY';
-		scope.locale = attrs.locale || 'sl';
+		scope.locale = attrs.locale || 'en';
 	};
 
 	return {
