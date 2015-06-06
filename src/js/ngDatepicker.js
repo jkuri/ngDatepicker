@@ -27,8 +27,6 @@ angular.module('jkuri.datepicker', [])
 			moment.locale(scope.locale);
 			var date = moment();
 
-			var calendar = angular.element(document.querySelectorAll('.calendar'));
-
 			var generateCalendar = function (date) {
 				var lastDayOfMonth = date.endOf('month').date(),
 					month = date.month(),
