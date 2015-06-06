@@ -37,7 +37,7 @@ angular.module('jkuri.datepicker', [])
 			
 				var firstWeekDay = date.set('date', 1).day();
 				if (firstWeekDay !== 1) {
-					i -= firstWeekDay;
+					i -= firstWeekDay - 1;
 				}
 
 				scope.dateValue = date.format('MMMM YYYY');
