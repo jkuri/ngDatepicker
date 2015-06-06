@@ -20,7 +20,8 @@
     "bower_components",
     "test",
     "tests",
-    "index.html" 
+    "index.html",
+    "screenshot"
   ],
   "dependencies": {
     "angular": "~1.4.0",
