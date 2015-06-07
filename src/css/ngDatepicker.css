@@ -110,6 +110,10 @@
 	cursor: pointer;
 }
 
+.ng-datepicker > .calendar > span:last-child > span.day {
+	border-right: 1px solid #c4c4c4;
+}
+
 .ng-datepicker > .calendar > span > span.day.disabled {
 	border-left: 1px solid transparent;
 	cursor: default;
