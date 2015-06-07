@@ -18,18 +18,33 @@
 	padding: 5px 0 0 0;
 }
 
-.ng-datepicker > .controls > i {
+.ng-datepicker > .controls i {
 	font-size: 25px;
 	cursor: pointer;
 }
 
-.ng-datepicker > .controls > i.prev-month-btn {
+.ng-datepicker > .controls > .left {
+	width: 35px;
+	display: inline-block;
 	float: left;
-	margin: 0 0 0 20px;
+	margin: 5px 0 0 3px;
+}
+
+.ng-datepicker > .controls > .left > i.prev-year-btn {
+	float: left;
+	display: block;
+	font-size: 14px;
+	opacity: 0.4;
+}
+
+.ng-datepicker > .controls > .left > i.prev-month-btn {
+	float: left;
+	margin: -5px 0 0 9px;
+	display: block;
 }
 
 .ng-datepicker > .controls > span.date {
-	width: 190px;
+	width: 170px;
 	text-align: center;
 	font-size: 14px;
 	color: #565a5c;
@@ -38,9 +53,23 @@
 	padding: 3px 0 0 0;
 }
 
-.ng-datepicker > .controls > i.next-month-btn {
+.ng-datepicker > .controls > .right {
+	width: 35px;
+	display: inline-block;
 	float: right;
-	margin: 0 20px 0 0;
+	margin: 5px 0 0 0;
+}
+
+.ng-datepicker > .controls > .right > i.next-year-btn {
+	float: left;
+	display: block;
+	font-size: 14px;
+	opacity: 0.4;
+}
+
+.ng-datepicker > .controls > .right > i.next-month-btn {
+	float: left;
+	margin: -6px 9px 0 0;
 }
 
 .ng-datepicker > .day-names {

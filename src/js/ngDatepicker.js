@@ -1,6 +1,6 @@
 angular.module('jkuri.datepicker', [])
 
-.directive('ngDatepicker', ['$compile', function($compile) {
+.directive('ngDatepicker', ['$document', function($document) {
 	'use strict';
 
 	var setScopeValues = function (scope, attrs) {
@@ -69,6 +69,11 @@ angular.module('jkuri.datepicker', [])
 				scope.calendarOpened = false;
 			};
 
+			scope.prevYear = function () {
+				date.subtract(1, 'Y');
+				generateCalendar(date);
+			};
+
 			scope.prevMonth = function () {
 				date.subtract(1, 'M');
 				generateCalendar(date);
@@ -79,6 +84,11 @@ angular.module('jkuri.datepicker', [])
 				generateCalendar(date);
 			};
 
+			scope.nextYear = function () {
+				date.add(1, 'Y');
+				generateCalendar(date);
+			};
+
 			scope.selectDate = function (event, date) {
 				event.preventDefault();
 				var selectedDate = moment(date.day + '.' + date.month + '.' + date.year, 'DD.MM.YYYY');
@@ -86,14 +96,49 @@ angular.module('jkuri.datepicker', [])
 				scope.viewValue = selectedDate.format(scope.viewFormat);
 				scope.closeCalendar();
 			};
+
+			// if clicked outside of calendar
+			var classList = ['ng-datepicker', 'ng-datepicker-input'];
+            if (attrs.id !== undefined) classList.push(attrs.id);
+			$document.on('click', function (e) {
+				if (!scope.calendarOpened) return;
+
+				var i = 0,
+					element;
+
+				if (!e.target) return;
+
+				for (element = e.target; element; element = element.parentNode) {
+					var id = element.id;
+					var classNames = element.className;
+
+					if (id !== undefined) {
+						for (i = 0; i < classList.length; i += 1) {
+							if (id.indexOf(classList[i]) > -1 || classNames.indexOf(classList[i]) > -1) {
+								return;
+							}
+						}
+					}
+				}
+
+				scope.closeCalendar();
+				scope.$apply();
+			});
+
 		},
 		template: 
-		'<div><input type="text" ng-focus="showCalendar()" ng-value="viewValue"></div>' +
+		'<div><input type="text" ng-focus="showCalendar()" ng-value="viewValue" class="ng-datepicker-input"></div>' +
 		'<div class="ng-datepicker" ng-show="calendarOpened">' +
 		'  <div class="controls">' +
-		'    <i class="fa fa-angle-left prev-month-btn" ng-click="prevMonth()"></i>' +
+		'    <div class="left">' +
+		'      <i class="fa fa-backward prev-year-btn" ng-click="prevYear()"></i>' +
+		'      <i class="fa fa-angle-left prev-month-btn" ng-click="prevMonth()"></i>' +
+		'    </div>' +
 		'    <span class="date" ng-bind="dateValue"></span>' +
-		'    <i class="fa fa-angle-right next-month-btn" ng-click="nextMonth()"></i>' +
+		'    <div class="right">' + 
+		'      <i class="fa fa-angle-right next-month-btn" ng-click="nextMonth()"></i>' +
+		'      <i class="fa fa-forward next-year-btn" ng-click="nextYear()"></i>' +
+		'    </div>' +
 		'  </div>' +
 		'  <div class="day-names">' +
 		'    <span ng-repeat="dn in dayNames">' +
