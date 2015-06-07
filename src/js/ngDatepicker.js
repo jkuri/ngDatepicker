@@ -7,6 +7,7 @@ angular.module('jkuri.datepicker', [])
 		scope.format = attrs.format || 'YYYY-MM-DD';
 		scope.viewFormat = attrs.viewFormat || 'Do MMMM YYYY';
 		scope.locale = attrs.locale || 'en';
+		scope.firstWeekDaySunday = attrs.firstWeekDaySunday || false; 
 	};
 
 	return {
@@ -51,7 +52,7 @@ angular.module('jkuri.datepicker', [])
 			};
 
 			var generateDayNames = function () {
-				var date = moment('2015-06-01');
+				var date = scope.firstWeekDaySunday === true ?  moment('2015-06-07') : moment('2015-06-01');
 				for (var i = 0; i < 7; i += 1) {
 					scope.dayNames.push(date.format('ddd'));
 					date.add('1', 'd');
