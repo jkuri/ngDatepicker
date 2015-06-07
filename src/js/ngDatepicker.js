@@ -7,7 +7,7 @@ angular.module('jkuri.datepicker', [])
 		scope.format = attrs.format || 'YYYY-MM-DD';
 		scope.viewFormat = attrs.viewFormat || 'Do MMMM YYYY';
 		scope.locale = attrs.locale || 'en';
-		scope.firstWeekDaySunday = attrs.firstWeekDaySunday || false; 
+		scope.firstWeekDaySunday = scope.$eval(attrs.firstWeekDaySunday) || false; 
 	};
 
 	return {
@@ -34,7 +34,7 @@ angular.module('jkuri.datepicker', [])
 					year = date.year(),
 					n = 1;
 			
-				var firstWeekDay = date.set('date', 1).day();
+				var firstWeekDay = scope.firstWeekDaySunday === true ? date.set('date', 2).day() : date.set('date', 1).day();
 				if (firstWeekDay !== 1) {
 					n -= firstWeekDay - 1;
 				}
