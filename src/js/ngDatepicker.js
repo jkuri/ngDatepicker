@@ -8,6 +8,7 @@ angular.module('jkuri.datepicker', [])
 		scope.viewFormat = attrs.viewFormat || 'Do MMMM YYYY';
 		scope.locale = attrs.locale || 'en';
 		scope.firstWeekDaySunday = scope.$eval(attrs.firstWeekDaySunday) || false; 
+		scope.placeholder = attrs.placeholder || '';
 	};
 
 	return {
@@ -128,7 +129,7 @@ angular.module('jkuri.datepicker', [])
 
 		},
 		template: 
-		'<div><input type="text" ng-focus="showCalendar()" ng-value="viewValue" class="ng-datepicker-input"></div>' +
+		'<div><input type="text" ng-focus="showCalendar()" ng-value="viewValue" class="ng-datepicker-input" placeholder="{{ placeholder }}"></div>' +
 		'<div class="ng-datepicker" ng-show="calendarOpened">' +
 		'  <div class="controls">' +
 		'    <div class="left">' +
