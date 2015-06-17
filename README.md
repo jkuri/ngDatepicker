@@ -19,7 +19,11 @@ Install
 
     $ bower install ngDatepicker
     
-#### Example Configuration
+#### With npm:
+
+    $ npm install ng-datepicker
+    
+#### Example Configuration (bower)
 ```html
 <!DOCTYPE html>
 <html ng-app="app">
