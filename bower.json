@@ -9,7 +9,7 @@
   "main": [
       "src/js/ngDatepicker.js",
       "src/css/ngDatepicker.js"
-    ]
+    ],
   "keywords": [
     "AngularJS",
     "Datepicker",
