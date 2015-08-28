@@ -6,7 +6,10 @@
     "Jan Kuri <jkuri88@gmail.com>"
   ],
   "description": "AngularJS Simple Date picker directive",
-  "main": "src/js/ngDatepicker.js",
+  "main": [
+      "src/js/ngDatepicker.js",
+      "src/css/ngDatepicker.js"
+    ]
   "keywords": [
     "AngularJS",
     "Datepicker",
