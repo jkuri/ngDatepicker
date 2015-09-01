@@ -14,6 +14,7 @@ angular.module('jkuri.datepicker', [])
 	return {
 		restrict: 'EA',
 		require: '?ngModel',
+		scope: {},
 		link: function (scope, element, attrs, ngModel) {
 			setScopeValues(scope, attrs);
 
