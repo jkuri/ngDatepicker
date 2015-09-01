@@ -14,9 +14,6 @@ angular.module('jkuri.datepicker', [])
 	return {
 		restrict: 'EA',
 		require: '?ngModel',
-		scope: {
-
-		},
 		link: function (scope, element, attrs, ngModel) {
 			setScopeValues(scope, attrs);
 
@@ -126,6 +123,12 @@ angular.module('jkuri.datepicker', [])
 				scope.closeCalendar();
 				scope.$apply();
 			});
+
+			ngModel.$render = function () {
+				var newValue = ngModel.$viewValue;
+				scope.viewValue = moment(newValue).format(attrs.viewFormat);
+				scope.dateValue = newValue;
+			};
 
 		},
 		template: 
