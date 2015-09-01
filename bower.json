@@ -1,16 +1,12 @@
 {
   "name": "ngDatepicker",
   "version": "0.0.1",
-  "homepage": "https://github.com/itjustwerks/ngDatepicker",
+  "homepage": "https://github.com/jkuri/ngDatepicker",
   "authors": [
-    "Jan Kuri <jkuri88@gmail.com>",
-    "Nathan Jass <nathan@itjustwerks.com>"
+    "Jan Kuri <jkuri88@gmail.com>"
   ],
   "description": "AngularJS Simple Date picker directive",
-  "main": [
-      "src/js/ngDatepicker.js",
-      "src/css/ngDatepicker.css"
-    ],
+  "main": "src/js/ngDatepicker.js",
   "keywords": [
     "AngularJS",
     "Datepicker",
