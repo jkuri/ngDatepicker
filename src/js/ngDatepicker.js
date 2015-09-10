@@ -127,8 +127,10 @@ angular.module('jkuri.datepicker', [])
 
 			ngModel.$render = function () {
 				var newValue = ngModel.$viewValue;
-				scope.viewValue = moment(newValue).format(attrs.viewFormat);
-				scope.dateValue = newValue;
+				if (newValue !== undefined) {
+					scope.viewValue = moment(newValue).format(attrs.viewFormat);
+					scope.dateValue = newValue;
+				}
 			};
 
 		},
