@@ -38,7 +38,7 @@ angular.module('jkuri.datepicker', [])
 					n -= firstWeekDay - 1;
 				}
 
-				// Code to fix date issue
+				//Code to fix date issue
 				if(n==2)
 					n = -5;
 
