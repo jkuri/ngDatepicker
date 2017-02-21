@@ -1,6 +1,6 @@
 angular.module('jkuri.datepicker', [])
 
-.directive('ngDatepicker', ['$document', function($document) {
+.directive('ngDatepicker', ['$timeout', function($timeout) {
 	'use strict';
 
 	var setScopeValues = function (scope, attrs) {
@@ -101,33 +101,21 @@ angular.module('jkuri.datepicker', [])
 				scope.closeCalendar();
 			};
 
-			// if clicked outside of calendar
-			var classList = ['ng-datepicker', 'ng-datepicker-input'];
-            if (attrs.id !== undefined) classList.push(attrs.id);
-			$document.on('click', function (e) {
-				if (!scope.calendarOpened) return;
+            scope.blurEventHandler = function() {
+                var pickerBox = element[0].querySelector('.ng-datepicker'),
+                    input = element[0].querySelector('.ng-datepicker-input');
+                $timeout( function(){
+					var activeElement = document.activeElement,
+						datepickerElementActive = activeElement.isEqualNode(input) || activeElement.isEqualNode(pickerBox);
+					return datepickerElementActive ||  scope.closeCalendar()
+            	});
+            };
 
-				var i = 0,
-					element;
+            scope.$on('blurEvent', scope.blurEventHandler);
 
-				if (!e.target) return;
-
-				for (element = e.target; element; element = element.parentNode) {
-					var id = element.id;
-					var classNames = element.className;
-
-					if (id !== undefined) {
-						for (i = 0; i < classList.length; i += 1) {
-							if (id.indexOf(classList[i]) > -1 || classNames.indexOf(classList[i]) > -1) {
-								return;
-							}
-						}
-					}
-				}
-
-				scope.closeCalendar();
-				scope.$apply();
-			});
+            scope.blurHandler = function() {
+                scope.$emit('blurEvent');
+            };
 
 			ngModel.$render = function () {
 				var newValue = ngModel.$viewValue;
@@ -136,11 +124,12 @@ angular.module('jkuri.datepicker', [])
 					scope.dateValue = newValue;
 				}
 			};
-
 		},
 		template: 
-		'<div><input type="text" ng-focus="showCalendar()" ng-value="viewValue" class="ng-datepicker-input" placeholder="{{ placeholder }}"></div>' +
-		'<div class="ng-datepicker" ng-show="calendarOpened">' +
+		'<div>' +
+		'	<input id="datepickerInput-{{$id}}" type="text" tabindex="1" ng-focus="showCalendar()" ng-value="viewValue" ng-blur="blurHandler()" class="ng-datepicker-input" placeholder="{{ placeholder }}">' +
+		'</div>' +
+		'<div id="datepickerBox-{{$id}}" class="ng-datepicker" tabindex="1" ng-show="calendarOpened" ng-blur="blurHandler()" >' +
 		'  <div class="controls">' +
 		'    <div class="left">' +
 		'      <i class="fa fa-backward prev-year-btn" ng-click="prevYear()"></i>' +
