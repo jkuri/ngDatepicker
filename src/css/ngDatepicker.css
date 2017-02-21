@@ -12,6 +12,10 @@
 	padding: 0;
 }
 
+.ng-datepicker:focus {
+	outline: none;
+}
+
 .ng-datepicker > .controls {
 	width: 250px;
 	display: inline-block;
